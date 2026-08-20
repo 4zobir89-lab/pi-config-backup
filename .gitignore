@@ -1,0 +1,19 @@
+# Dependencies (reinstall, don't commit)
+node_modules/
+.pnp/
+.pnp.js
+
+# Secrets / runtime state
+.env
+.env.*
+*.env
+auth.json
+sessions/
+models-store.json
+.backup-*
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
+.cache/

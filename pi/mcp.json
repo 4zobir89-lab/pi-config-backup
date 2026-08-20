@@ -1,0 +1,13 @@
+{
+  "tradingview": {
+    "command": "npx",
+    "args": ["-y", "tradingview-mcp-server"],
+    "env": {}
+  },
+  "prompts.chat": {
+    "url": "https://prompts.chat/api/mcp"
+  },
+  "penpot": {
+    "url": "http://localhost:4401/mcp"
+  }
+}

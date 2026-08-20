@@ -1,0 +1,137 @@
+{
+  "providers": {
+    "freemodel": {
+      "baseUrl": "https://api.freemodel.dev/v1",
+      "apiKey": "fe_oa_118659758f97046d27d01384a6cc20e336d4fb3e396d7ec9",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "gpt-5.6-sol",
+          "name": "GPT-5.6 Sol (FreeModel)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        },
+        {
+          "id": "gpt-5.6-luna",
+          "name": "GPT-5.6 Luna (FreeModel)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        },
+        {
+          "id": "gpt-5.6-terra",
+          "name": "GPT-5.6 Terra (FreeModel)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        },
+        {
+          "id": "gpt-5.5",
+          "name": "GPT-5.5 (FreeModel)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        },
+        {
+          "id": "gpt-5.4",
+          "name": "GPT-5.4 (FreeModel)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        },
+        {
+          "id": "gpt-5.4-mini",
+          "name": "GPT-5.4 Mini (FreeModel)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        },
+        {
+          "id": "gpt-5.3-codex",
+          "name": "GPT-5.3 Codex (FreeModel)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        }
+      ]
+    },
+    "dahl": {
+      "baseUrl": "https://inference.dahl.global/v1",
+      "apiKey": "dahl_H7wjBSvXnBnqfF8xSh376XioFH2fL4ydz",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "moonshotai/Kimi-K2.6",
+          "name": "Kimi K2.6",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 262144,
+          "maxTokens": 65536
+        },
+        {
+          "id": "MiniMaxAI/MiniMax-M2.7",
+          "name": "MiniMax M2.7",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 200000,
+          "maxTokens": 65536
+        }
+      ]
+    },
+    "nvidia": {
+      "baseUrl": "https://integrate.api.nvidia.com/v1",
+      "apiKey": "$NVIDIA_API_KEY",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "z-ai/glm-5.2",
+          "name": "GLM 5.2",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 131072,
+          "maxTokens": 16384
+        },
+        {
+          "id": "qwen/qwen3.5-397b-a17b",
+          "name": "Qwen 3.5-397B",
+          "reasoning": true,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 131072,
+          "maxTokens": 32768
+        }
+      ]
+    },
+    "cloudflare-workers-ai": {
+      "models": [
+        {
+          "id": "@cf/zai-org/glm-5.2",
+          "name": "GLM 5.2 (CF)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 131072,
+          "maxTokens": 16384
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "lastChangelogVersion": "0.84.2",
+  "theme": "dark",
+  "defaultProvider": "opencode",
+  "defaultModel": "hy3-free",
+  "providerPriority": [
+    "opencode",
+    "freemodel",
+    "dahl",
+    "nvidia",
+    "cloudflare-workers-ai"
+  ],
+  "ecc": {
+    "enabled": true,
+    "version": "2.2.0",
+    "strictMode": true,
+    "autoDelegation": true,
+    "tddEnforced": true,
+    "securityFirst": true,
+    "immutableData": true,
+    "contextAware": true,
+    "swarmEnabled": true,
+    "selfImprovementEnabled": true,
+    "crossSessionLearning": true,
+    "smartModelRouting": true,
+    "xmlPromptArchitecture": true,
+    "stopReviewGate": true,
+    "adversarialReview": true,
+    "agentForwardingRules": true,
+    "structuredOutputContracts": true,
+    "aowPattern": true,
+    "echoProtocol": true,
+    "selfEvaluation4Tier": true,
+    "intentVsOutput": true,
+    "alwaysOnAgents": true,
+    "mcpIntegration": true,
+    "ragPatterns": true,
+    "enforcementFiles": [
+      "AGENTS.md",
+      "ECC-ENFORCEMENT.md"
+    ]
+  },
+  "agentDefaults": {
+    "usePlannerForComplex": true,
+    "useTddGuideForNewFeatures": true,
+    "useCodeReviewerAfterEdit": true,
+    "useSecurityReviewerForSensitive": true,
+    "useParallelExecution": true,
+    "useCompactAtThreshold": true,
+    "useCrossSessionMemory": true,
+    "routeModelByTask": true,
+    "useStructuredPrompts": true,
+    "useStopReviewGate": true,
+    "useAdversarialReview": true,
+    "cleanAgentForwarding": true,
+    "useAOWPattern": true,
+    "useEchoProtocol": true,
+    "useSelfEvaluation": true,
+    "useIntentVerification": true,
+    "useAlwaysOnMonitoring": true,
+    "useMCPIntegration": true,
+    "useRAGPatterns": true
+  },
+  "context": {
+    "compactThreshold": 30,
+    "criticalThreshold": 15,
+    "emergencyThreshold": 5,
+    "compactEveryNTurns": 8,
+    "monitorContinuously": true
+  },
+  "promptEngine": {
+    "useXmlArchitecture": true,
+    "promptContracts": [
+      "structured_output_contract",
+      "compact_output_contract",
+      "default_follow_through_policy",
+      "completeness_contract",
+      "verification_loop",
+      "grounding_rules",
+      "action_safety",
+      "missing_context_gating",
+      "dig_deeper_nudge",
+      "research_mode",
+      "citation_rules"
+    ]
+  },
+  "stopGate": {
+    "enabled": true,
+    "reviewLastTurn": true,
+    "blockOnCriticalIssues": true,
+    "allowOnNoChanges": true
+  },
+  "adversarialReview": {
+    "enabled": true,
+    "attackSurface": [
+      "auth",
+      "data-loss",
+      "rollback",
+      "race-conditions",
+      "empty-state",
+      "timeouts",
+      "stale-state"
+    ],
+    "requireEvidence": true,
+    "outputSchema": "file:line:confidence:recommendation"
+  },
+  "agentForwarding": {
+    "thinWrapper": true,
+    "singleInvocation": true,
+    "returnRawOutput": true,
+    "noFollowUp": true,
+    "noAnalysis": true
+  },
+  "swarm": {
+    "enabled": true,
+    "maxParallelAgents": 4,
+    "requireCoordinator": true,
+    "isolateWorktrees": true,
+    "autoMergeAfterReview": true
+  },
+  "memory": {
+    "sessionEndCapture": true,
+    "enableInstincts": true,
+    "enableADRs": true,
+    "enableGrowthLogs": true
+  },
+  "modelRouting": {
+    "enabled": true,
+    "defaultProvider": "nvidia",
+    "fallbackProvider": "cloudflare-workers-ai",
+    "verifiedModels": [
+      {
+        "id": "big-pickle",
+        "provider": "opencode",
+        "status": "verified",
+        "contextWindow": 200000,
+        "maxTokens": 16384,
+        "reasoning": true,
+        "vision": true,
+        "cost": "paid",
+        "tasks": [
+          "coding",
+          "testing",
+          "review",
+          "debugging",
+          "architecture",
+          "complex-bug"
+        ]
+      },
+      {
+        "id": "gpt-5.6-sol",
+        "provider": "freemodel",
+        "status": "verified",
+        "contextWindow": 128000,
+        "maxTokens": 16384,
+        "reasoning": false,
+        "vision": false,
+        "cost": "free",
+        "tasks": [
+          "research",
+          "read",
+          "simple-edit",
+          "bash",
+          "grep"
+        ]
+      },
+      {
+        "id": "gpt-5.6-luna",
+        "provider": "freemodel",
+        "status": "available",
+        "contextWindow": 128000,
+        "maxTokens": 16384,
+        "reasoning": false,
+        "vision": false,
+        "cost": "free",
+        "tasks": [
+          "research",
+          "read",
+          "simple-edit",
+          "bash",
+          "grep"
+        ]
+      },
+      {
+        "id": "gpt-5.6-terra",
+        "provider": "freemodel",
+        "status": "limited",
+        "contextWindow": 128000,
+        "maxTokens": 16384,
+        "reasoning": false,
+        "vision": false,
+        "cost": "free",
+        "tasks": [
+          "research",
+          "read",
+          "bash",
+          "grep"
+        ]
+      },
+      {
+        "id": "gpt-5.5",
+        "provider": "freemodel",
+        "status": "available",
+        "contextWindow": 128000,
+        "maxTokens": 16384,
+        "reasoning": false,
+        "vision": false,
+        "cost": "free",
+        "tasks": [
+          "research",
+          "read",
+          "simple-edit",
+          "bash"
+        ]
+      },
+      {
+        "id": "gpt-5.4",
+        "provider": "freemodel",
+        "status": "available",
+        "contextWindow": 128000,
+        "maxTokens": 16384,
+        "reasoning": false,
+        "vision": false,
+        "cost": "free",
+        "tasks": [
+          "research",
+          "read",
+          "bash",
+          "grep"
+        ]
+      },
+      {
+        "id": "gpt-5.4-mini",
+        "provider": "freemodel",
+        "status": "verified",
+        "contextWindow": 128000,
+        "maxTokens": 16384,
+        "reasoning": false,
+        "vision": false,
+        "cost": "free",
+        "tasks": [
+          "research",
+          "read",
+          "bash",
+          "simple-queries"
+        ]
+      }
+    ],
+    "unavailableModels": [
+      {
+        "id": "gpt-5.3-codex",
+        "provider": "freemodel",
+        "status": "removed",
+        "reason": "Model no longer supported by API"
+      },
+      {
+        "id": "moonshotai/Kimi-K2.6",
+        "provider": "dahl",
+        "status": "auth_expired",
+        "contextWindow": 262144,
+        "reasoning": true,
+        "vision": true,
+        "reason": "API token expired - needs renewal"
+      },
+      {
+        "id": "MiniMaxAI/MiniMax-M2.7",
+        "provider": "dahl",
+        "status": "auth_expired",
+        "contextWindow": 200000,
+        "reasoning": true,
+        "vision": true,
+        "reason": "API token expired - needs renewal"
+      },
+      {
+        "id": "z-ai/glm-5.2",
+        "provider": "nvidia",
+        "status": "missing_key",
+        "contextWindow": 131072,
+        "reason": "NVIDIA_API_KEY not set in environment"
+      },
+      {
+        "id": "qwen/qwen3.5-397b-a17b",
+        "provider": "nvidia",
+        "status": "eol",
+        "reason": "End of life 2026-07-27"
+      },
+      {
+        "id": "@cf/zai-org/glm-5.2",
+        "provider": "cloudflare-workers-ai",
+        "status": "requires_paid_plan",
+        "reason": "Model not available on Workers Free plan"
+      }
+    ]
+  },
+  "aow": {
+    "enabled": true,
+    "advisorModel": "claude-fable-5",
+    "workerModel": "gemini-3.5-flash",
+    "orchestratorModel": "sonnet",
+    "maxWorkersPerWave": 3,
+    "minAdvisorConsults": 2,
+    "retryOnFailure": 1,
+    "workerIsolation": true
+  },
+  "echo": {
+    "enabled": true,
+    "noActionUntilApproved": true,
+    "quarantineInferences": true,
+    "flagReversals": true,
+    "preserveTangents": true
+  },
+  "selfEval": {
+    "enabled": true,
+    "tier1_structural": true,
+    "tier2_securityDeterminism": true,
+    "tier3_triggerRouting": true,
+    "tier4_behavioral": true,
+    "beforeDelivery": [
+      "tier1",
+      "tier2"
+    ],
+    "afterComplex": [
+      "tier1",
+      "tier2",
+      "tier3"
+    ],
+    "endOfSession": [
+      "tier4",
+      "growth-log"
+    ]
+  },
+  "intentVerification": {
+    "enabled": true,
+    "singleSentenceIntent": true,
+    "compareWithChanges": true,
+    "decisions": [
+      "keep",
+      "split",
+      "justify",
+      "revert"
+    ]
+  },
+  "alwaysOn": {
+    "enabled": true,
+    "singleTaskPerAgent": true,
+    "reportsUnder30s": true,
+    "noEditWithoutPermission": true,
+    "sessionLogging": true
+  },
+  "testing": {
+    "minimumCoverage": 80,
+    "enforceTDD": true,
+    "requireUnitTests": true,
+    "requireIntegrationTests": true,
+    "requireE2ETests": true
+  },
+  "quality": {
+    "maxFunctionLines": 50,
+    "maxFileLines": 800,
+    "maxNestingLevels": 4,
+    "noHardcodedValues": true,
+    "immutablePatterns": true
+  },
+  "commits": {
+    "format": "conventional",
+    "types": [
+      "feat",
+      "fix",
+      "refactor",
+      "docs",
+      "test",
+      "chore",
+      "perf",
+      "ci"
+    ]
+  },
+  "instructions": {
+    "loadOnStart": true,
+    "files": [
+      "/root/.pi/agent/AGENTS.md",
+      "/root/.pi/agent/ECC-ENFORCEMENT.md"
+    ]
+  },
+  "defaultThinkingLevel": "high"
+}
