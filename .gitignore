@@ -1,5 +1,7 @@
 # Dependencies (reinstall, don't commit)
 node_modules/
+__pycache__/
+*.py[cod]
 .pnp/
 .pnp.js
 
