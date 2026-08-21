@@ -1,0 +1,23 @@
+version: 1
+id: nova-planning
+name: Planning
+trigger:
+  event: REQUIREMENTS_READY
+  idempotency_key: eventId
+execution:
+  mode: event-driven
+  approval_required: false
+agents:
+  - orchestrator
+  - requirements
+  - research
+outputs:
+  - requirements.md
+  - research.md
+success_event: DESIGN_READY
+failure_events:
+  - TEST_FAILED
+  - FIX_REQUIRED
+security:
+  audit_log: required
+  secret_access: reference-only

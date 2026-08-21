@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "projectId",
+    "workflowId",
+    "phase",
+    "status",
+    "history"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string"
+    },
+    "workflowId": {
+      "type": "string"
+    },
+    "phase": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "running",
+        "blocked",
+        "completed",
+        "failed"
+      ]
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true
+}

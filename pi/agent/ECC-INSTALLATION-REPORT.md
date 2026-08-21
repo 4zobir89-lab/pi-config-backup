@@ -14,7 +14,7 @@
 
 ### 1. AGENTS.md (التعليمات الرئيسية)
 
-**المسار:** `/root/.pi/agent/AGENTS.md`
+**المسار:** `$PI_HOME/agent/AGENTS.md`
 
 **المحتوى:**
 - الورك فلو الأساسي (Plan → TDD → Review → Commit)
@@ -25,7 +25,7 @@
 
 ### 2. القواعد (Rules)
 
-**المسار:** `/root/.pi/agent/rules/common/`
+**المسار:** `$PI_HOME/agent/rules/common/`
 
 **الملفات المنسوخة:**
 - `agents.md` — تفويض الوكلاء
@@ -42,7 +42,7 @@
 
 ### 3. الإعدادات (Settings)
 
-**المسار:** `/root/.pi/agent/settings.json`
+**المسار:** `$PI_HOME/agent/settings.json`
 
 **الإعدادات الجديدة:**
 ```json
@@ -82,19 +82,19 @@
 
 ### 4. الوكلاء (Agents)
 
-**المسار:** `/root/.pi/agent/agents/`
+**المسار:** `$PI_HOME/agent/agents/`
 
 **الوكلاء المتاحة:** 67 وكيل
 
 ### 5. المهارات (Skills)
 
-**المسار:** `/root/.pi/agent/skills/`
+**المسار:** `$PI_HOME/agent/skills/`
 
 **عدد المهارات:** 278 مهارة
 
 ### 6. مستودع ECC
 
-**المسار:** `/root/ecc-repo/`
+**المسار:** `$ECC_HOME/`
 
 **الحالة:** مربوط بالكامل
 

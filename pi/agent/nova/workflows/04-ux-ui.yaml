@@ -1,0 +1,22 @@
+version: 1
+id: nova-ux-ui
+name: UX/UI
+trigger:
+  event: DESIGN_READY
+  idempotency_key: eventId
+execution:
+  mode: event-driven
+  approval_required: false
+agents:
+  - orchestrator
+  - ux-ui
+outputs:
+  - design-system.md
+  - ux-flows.md
+success_event: DESIGN_READY
+failure_events:
+  - TEST_FAILED
+  - FIX_REQUIRED
+security:
+  audit_log: required
+  secret_access: reference-only

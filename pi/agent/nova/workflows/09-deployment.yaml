@@ -1,0 +1,22 @@
+version: 1
+id: nova-deployment
+name: Deployment
+trigger:
+  event: DEPLOY_READY
+  idempotency_key: eventId
+execution:
+  mode: event-driven
+  approval_required: false
+agents:
+  - orchestrator
+  - devops
+outputs:
+  - deployment.md
+  - runbook.md
+success_event: PROJECT_COMPLETED
+failure_events:
+  - TEST_FAILED
+  - FIX_REQUIRED
+security:
+  audit_log: required
+  secret_access: reference-only

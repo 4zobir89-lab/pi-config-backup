@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schemaVersion": "1.0.0",
+  "system": "nova",
+  "description": "Portable plugin registry for Pi's Nova-compatible operating model.",
+  "orchestrator": "orchestrator",
+  "agents": [
+    {
+      "id": "orchestrator",
+      "name": "Orchestrator",
+      "role": "توزيع العمل، إدارة الحالة، وتجميع النتائج",
+      "category": "coordination",
+      "plugin": "plugins/orchestrator",
+      "status": "enabled",
+      "inputContract": "schemas/orchestrator.input.schema.json",
+      "outputContract": "schemas/orchestrator.output.schema.json"
+    },
+    {
+      "id": "discovery",
+      "name": "Discovery Agent",
+      "role": "فهم الهدف والسياق والقيود",
+      "category": "discovery",
+      "plugin": "plugins/discovery",
+      "status": "enabled",
+      "inputContract": "schemas/discovery.input.schema.json",
+      "outputContract": "schemas/discovery.output.schema.json"
+    },
+    {
+      "id": "requirements",
+      "name": "Requirements Agent",
+      "role": "تحويل الفكرة إلى متطلبات قابلة للتحقق",
+      "category": "planning",
+      "plugin": "plugins/requirements",
+      "status": "enabled",
+      "inputContract": "schemas/requirements.input.schema.json",
+      "outputContract": "schemas/requirements.output.schema.json"
+    },
+    {
+      "id": "research",
+      "name": "Research Agent",
+      "role": "جمع الأدلة والمراجع وتحليل المجال",
+      "category": "research",
+      "plugin": "plugins/research",
+      "status": "enabled",
+      "inputContract": "schemas/research.input.schema.json",
+      "outputContract": "schemas/research.output.schema.json"
+    },
+    {
+      "id": "architect",
+      "name": "Architecture Agent",
+      "role": "اختيار المعمارية والحدود والتبعيات",
+      "category": "architecture",
+      "plugin": "plugins/architect",
+      "status": "enabled",
+      "inputContract": "schemas/architect.input.schema.json",
+      "outputContract": "schemas/architect.output.schema.json"
+    },
+    {
+      "id": "ux-ui",
+      "name": "UX/UI Agent",
+      "role": "تصميم التجربة وواجهة الاستخدام والنظام البصري",
+      "category": "design",
+      "plugin": "plugins/ux-ui",
+      "status": "enabled",
+      "inputContract": "schemas/ux-ui.input.schema.json",
+      "outputContract": "schemas/ux-ui.output.schema.json"
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend Agent",
+      "role": "تنفيذ واجهة العميل ومكوناتها",
+      "category": "development",
+      "plugin": "plugins/frontend",
+      "status": "enabled",
+      "inputContract": "schemas/frontend.input.schema.json",
+      "outputContract": "schemas/frontend.output.schema.json"
+    },
+    {
+      "id": "backend",
+      "name": "Backend Agent",
+      "role": "تنفيذ الخدمات وواجهات API",
+      "category": "development",
+      "plugin": "plugins/backend",
+      "status": "enabled",
+      "inputContract": "schemas/backend.input.schema.json",
+      "outputContract": "schemas/backend.output.schema.json"
+    },
+    {
+      "id": "database",
+      "name": "Database Agent",
+      "role": "تصميم البيانات والهجرات والاستعلامات",
+      "category": "development",
+      "plugin": "plugins/database",
+      "status": "enabled",
+      "inputContract": "schemas/database.input.schema.json",
+      "outputContract": "schemas/database.output.schema.json"
+    },
+    {
+      "id": "security",
+      "name": "Security Agent",
+      "role": "التهديدات، الأسرار، الصلاحيات، والمراجعة الأمنية",
+      "category": "security",
+      "plugin": "plugins/security",
+      "status": "enabled",
+      "inputContract": "schemas/security.input.schema.json",
+      "outputContract": "schemas/security.output.schema.json"
+    },
+    {
+      "id": "qa",
+      "name": "QA Agent",
+      "role": "اختبارات الوحدة والتكامل وواجهات المستخدم",
+      "category": "quality",
+      "plugin": "plugins/qa",
+      "status": "enabled",
+      "inputContract": "schemas/qa.input.schema.json",
+      "outputContract": "schemas/qa.output.schema.json"
+    },
+    {
+      "id": "devops",
+      "name": "DevOps Agent",
+      "role": "التعبئة والنشر والمراقبة والتراجع",
+      "category": "deployment",
+      "plugin": "plugins/devops",
+      "status": "enabled",
+      "inputContract": "schemas/devops.input.schema.json",
+      "outputContract": "schemas/devops.output.schema.json"
+    },
+    {
+      "id": "integration",
+      "name": "Integration Agent",
+      "role": "دمج النتائج والتحقق من العقود بين الوكلاء",
+      "category": "integration",
+      "plugin": "plugins/integration",
+      "status": "enabled",
+      "inputContract": "schemas/integration.input.schema.json",
+      "outputContract": "schemas/integration.output.schema.json"
+    },
+    {
+      "id": "documentation",
+      "name": "Documentation Agent",
+      "role": "توثيق القرارات والواجهات وطريقة التشغيل",
+      "category": "documentation",
+      "plugin": "plugins/documentation",
+      "status": "enabled",
+      "inputContract": "schemas/documentation.input.schema.json",
+      "outputContract": "schemas/documentation.output.schema.json"
+    },
+    {
+      "id": "improvement",
+      "name": "Continuous Improvement Agent",
+      "role": "قياس النتائج وتسجيل الدروس والتحسينات",
+      "category": "improvement",
+      "plugin": "plugins/improvement",
+      "status": "enabled",
+      "inputContract": "schemas/improvement.input.schema.json",
+      "outputContract": "schemas/improvement.output.schema.json"
+    }
+  ]
+}

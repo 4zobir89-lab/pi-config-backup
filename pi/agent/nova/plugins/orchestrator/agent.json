@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "orchestrator",
+  "name": "Orchestrator",
+  "version": "1.0.0",
+  "role": "توزيع العمل، إدارة الحالة، وتجميع النتائج",
+  "category": "coordination",
+  "entrypoint": "instructions.md",
+  "tools": "tools.json",
+  "memory": "memory.json",
+  "inputSchema": "schemas/orchestrator.input.schema.json",
+  "outputSchema": "schemas/orchestrator.output.schema.json",
+  "permissionsRole": "orchestrator",
+  "events": {
+    "subscribe": [
+      "PROJECT_CREATED",
+      "REQUIREMENTS_READY",
+      "DESIGN_READY",
+      "CODE_READY",
+      "TEST_FAILED",
+      "FIX_REQUIRED",
+      "DEPLOY_READY",
+      "PROJECT_COMPLETED"
+    ],
+    "publish": [
+      "REQUIREMENTS_READY",
+      "DESIGN_READY",
+      "CODE_READY",
+      "TEST_FAILED",
+      "FIX_REQUIRED",
+      "DEPLOY_READY",
+      "PROJECT_COMPLETED"
+    ]
+  }
+}

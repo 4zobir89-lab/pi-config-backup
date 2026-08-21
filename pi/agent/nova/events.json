@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0.0",
+  "events": [
+    {
+      "name": "PROJECT_CREATED",
+      "description": "إنشاء مشروع جديد",
+      "producer": "discovery",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    },
+    {
+      "name": "REQUIREMENTS_READY",
+      "description": "اعتماد المتطلبات",
+      "producer": "requirements",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    },
+    {
+      "name": "DESIGN_READY",
+      "description": "اعتماد التصميم والمعمارية",
+      "producer": "ux-ui",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    },
+    {
+      "name": "CODE_READY",
+      "description": "اكتمال التنفيذ الأولي",
+      "producer": "integration",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    },
+    {
+      "name": "TEST_FAILED",
+      "description": "فشل اختبار أو بوابة جودة",
+      "producer": "qa",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    },
+    {
+      "name": "FIX_REQUIRED",
+      "description": "وجود إصلاح مطلوب",
+      "producer": "integration",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    },
+    {
+      "name": "DEPLOY_READY",
+      "description": "اجتياز جاهزية النشر",
+      "producer": "devops",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    },
+    {
+      "name": "PROJECT_COMPLETED",
+      "description": "إغلاق دورة المشروع",
+      "producer": "improvement",
+      "payload": "schemas/event-payload.schema.json",
+      "idempotent": true,
+      "auditRequired": true
+    }
+  ]
+}

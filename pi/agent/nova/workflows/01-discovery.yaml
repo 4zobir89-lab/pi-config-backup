@@ -1,0 +1,21 @@
+version: 1
+id: nova-discovery
+name: Discovery
+trigger:
+  event: PROJECT_CREATED
+  idempotency_key: eventId
+execution:
+  mode: event-driven
+  approval_required: false
+agents:
+  - orchestrator
+  - discovery
+outputs:
+  - project-brief.md
+success_event: REQUIREMENTS_READY
+failure_events:
+  - TEST_FAILED
+  - FIX_REQUIRED
+security:
+  audit_log: required
+  secret_access: reference-only

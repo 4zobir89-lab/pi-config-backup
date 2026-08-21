@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "1.0.0",
+  "workflowId": "nova-software-delivery",
+  "execution": {
+    "mode": "event-driven",
+    "maxRetries": 1,
+    "idempotencyKey": "eventId",
+    "approvalPolicy": "explicit-for-side-effects"
+  },
+  "phases": [
+    {
+      "number": 1,
+      "id": "discovery",
+      "name": "Discovery",
+      "entryEvent": "PROJECT_CREATED",
+      "successEvent": "REQUIREMENTS_READY",
+      "agents": [
+        "orchestrator",
+        "discovery"
+      ],
+      "artifacts": [
+        "project-brief.md"
+      ]
+    },
+    {
+      "number": 2,
+      "id": "planning",
+      "name": "Planning",
+      "entryEvent": "REQUIREMENTS_READY",
+      "successEvent": "DESIGN_READY",
+      "agents": [
+        "orchestrator",
+        "requirements",
+        "research"
+      ],
+      "artifacts": [
+        "requirements.md",
+        "research.md"
+      ]
+    },
+    {
+      "number": 3,
+      "id": "architecture",
+      "name": "Architecture",
+      "entryEvent": "REQUIREMENTS_READY",
+      "successEvent": "DESIGN_READY",
+      "agents": [
+        "orchestrator",
+        "architect",
+        "database"
+      ],
+      "artifacts": [
+        "architecture.md",
+        "api.yaml",
+        "database.sql"
+      ]
+    },
+    {
+      "number": 4,
+      "id": "ux-ui",
+      "name": "UX/UI",
+      "entryEvent": "DESIGN_READY",
+      "successEvent": "DESIGN_READY",
+      "agents": [
+        "orchestrator",
+        "ux-ui"
+      ],
+      "artifacts": [
+        "design-system.md",
+        "ux-flows.md"
+      ]
+    },
+    {
+      "number": 5,
+      "id": "development",
+      "name": "Development",
+      "entryEvent": "DESIGN_READY",
+      "successEvent": "CODE_READY",
+      "agents": [
+        "orchestrator",
+        "frontend",
+        "backend",
+        "database"
+      ],
+      "artifacts": [
+        "components.tsx",
+        "services.ts",
+        "tests.md"
+      ]
+    },
+    {
+      "number": 6,
+      "id": "integration",
+      "name": "Integration",
+      "entryEvent": "CODE_READY",
+      "successEvent": "DEPLOY_READY",
+      "agents": [
+        "orchestrator",
+        "integration"
+      ],
+      "artifacts": [
+        "integration-report.md",
+        "artifact-manifest.json"
+      ]
+    },
+    {
+      "number": 7,
+      "id": "security",
+      "name": "Security Review",
+      "entryEvent": "CODE_READY",
+      "successEvent": "DEPLOY_READY",
+      "agents": [
+        "orchestrator",
+        "security"
+      ],
+      "artifacts": [
+        "security-review.md"
+      ]
+    },
+    {
+      "number": 8,
+      "id": "qa",
+      "name": "QA",
+      "entryEvent": "DEPLOY_READY",
+      "successEvent": "DEPLOY_READY",
+      "agents": [
+        "orchestrator",
+        "qa"
+      ],
+      "artifacts": [
+        "qa-report.md",
+        "test-results.json"
+      ]
+    },
+    {
+      "number": 9,
+      "id": "deployment",
+      "name": "Deployment",
+      "entryEvent": "DEPLOY_READY",
+      "successEvent": "PROJECT_COMPLETED",
+      "agents": [
+        "orchestrator",
+        "devops"
+      ],
+      "artifacts": [
+        "deployment.md",
+        "runbook.md"
+      ]
+    },
+    {
+      "number": 10,
+      "id": "improvement",
+      "name": "Continuous Improvement",
+      "entryEvent": "PROJECT_COMPLETED",
+      "successEvent": "PROJECT_COMPLETED",
+      "agents": [
+        "orchestrator",
+        "improvement"
+      ],
+      "artifacts": [
+        "growth-log.md",
+        "adr.md"
+      ]
+    }
+  ],
+  "failureTransitions": [
+    {
+      "event": "TEST_FAILED",
+      "from": "qa",
+      "to": "integration"
+    },
+    {
+      "event": "FIX_REQUIRED",
+      "from": "integration",
+      "to": "development"
+    }
+  ]
+}

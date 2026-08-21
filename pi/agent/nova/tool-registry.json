@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "defaultPolicy": "deny",
+  "tools": [
+    {
+      "id": "git",
+      "category": "source-control",
+      "mode": "read-write",
+      "approval": "commit"
+    },
+    {
+      "id": "github",
+      "category": "source-control",
+      "mode": "read-write",
+      "approval": "pull-request-or-push"
+    },
+    {
+      "id": "browser",
+      "category": "research",
+      "mode": "read-only-by-default",
+      "approval": "external-write"
+    },
+    {
+      "id": "web-search",
+      "category": "research",
+      "mode": "read-only",
+      "approval": "none"
+    },
+    {
+      "id": "figma",
+      "category": "design",
+      "mode": "read-write",
+      "approval": "design-publish"
+    },
+    {
+      "id": "database",
+      "category": "data",
+      "mode": "read-write",
+      "approval": "migration-or-delete"
+    },
+    {
+      "id": "cloud-deployment",
+      "category": "deployment",
+      "mode": "read-write",
+      "approval": "deploy"
+    },
+    {
+      "id": "mcp",
+      "category": "integration",
+      "mode": "scoped",
+      "approval": "connector-policy"
+    }
+  ]
+}

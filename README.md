@@ -1,56 +1,94 @@
-# pi-config-backup
+# Pi Config Backup — Nova-Compatible Agent Platform
 
-Backup of the Pi agent's internal instructions, rules, skills, and current settings.
+هذا المستودع هو نسخة مُدارة بالإصدارات من إعدادات **Pi** وتعليماته ومهاراته وحزمة **ECC** المرتبطة به. أضيفت إليه طبقة تشغيلية باسم **Nova-compatible** لتحويل الإعدادات من مجموعة قواعد متفرقة إلى نظام متعدد الوكلاء قابل للتوسع، يعمل وفق الأحداث، ويُخرج نتائج قابلة للتتبع والمراجعة.
 
-- **Owner:** 4zobir89-lab
-- **Visibility:** PRIVATE
-- **Purpose:** version-control Pi/ECC config so it can be edited and updated over time.
+> **حالة المشروع:** هذه النسخة هي بنية تشغيلية وArchitecture MVP متقدمة، وليست منصة SaaS مكتملة بواجهة مستخدم أو قاعدة بيانات تشغيلية أو Event Bus إنتاجي. العقود والملفات المنظمة جاهزة للبناء فوقها، بينما التنفيذ الإنتاجي للمنسق والذاكرة والأحداث يحتاج طبقة Runtime لاحقة.
 
-## Structure
+## ما الذي يحلّه المشروع؟
 
-```
-pi-config-backup/
-├── pi/        # mirror of /root/.pi  (Pi agent config: AGENTS.md, ECC rules, settings, skills, prompts, mcp, penpot-mcp, ...)
-└── ecc/       # mirror of /root/ecc-repo  (the ECC bundle: skills, commands, hooks, docs, scripts, dotfiles)
-```
+قبل إعادة الهيكلة، كانت إعدادات Pi تحتوي على عدد كبير من التعليمات والوكلاء والأوامر، لكن من دون سجل موحد يحدد من يفعل ماذا، أو عقد موحد للنتائج، أو انتقالات واضحة بين مراحل المشروع. كما وُجدت تعارضات بين النموذج الافتراضي وقائمة النماذج، ومسارات ثابتة مرتبطة ببيئة مستخدم واحدة، وقيم اعتماد يجب ألا تبقى داخل ملفات الإعدادات.
 
-### What is included
-- `pi/agent/AGENTS.md`, `ECC-*.md` — core instructions
-- `pi/agent/settings.json`, `pi/agent/models.json`, `pi/mcp.json` — current agent settings
-- `pi/agent/rules/`, `pi/agent/agents/`, `pi/agent/commands-ecc/`, `pi/agent/extensions/`, `pi/agent/bin/`
-- `pi/agent/skills/`, `pi/skills/` — installed skills
-- `pi/prompts-lib/`, `pi/penpot-mcp/`
-- `ecc/` — full ECC bundle (skills, commands, hooks, docs, scripts, dotfiles)
+تضيف طبقة Nova-compatible منسقًا مركزيًا، وسجلًا للوكلاء، ونظام أحداث، وسير عمل من عشر مراحل، وثلاث طبقات للذاكرة، ونظام Artifacts، وسجل أدوات وصلاحيات يعمل بسياسة **deny-by-default**. بهذه الطريقة يصبح كل وكيل Plugin مستقلًا، وتصبح كل نتيجة قابلة للإصدار والتحقق، ولا يُسمح بالانتقال بين المراحل دون Artifact موثق.
 
-### What was EXCLUDED (for safety / not config)
-- `pi/agent/auth.json` — gh session credentials
-- `pi/agent/sessions/` — chat history
-- `pi/agent/models-store.json` — cached provider keys
-- `pi/agent/.backup-*` — old backups
-- `pi/agent/ecc-*` — symlinks (ecc content is mirrored under `ecc/`)
-- all `node_modules/` — installable deps (reinstall instead of committing)
-- `.env` / `.env.*` — secret env files
-- any `.git/` directories
+## البنية الرئيسية
 
-## ⚠️ Secrets note
-`pi/agent/settings.json` and `pi/agent/models.json` contain **real API keys**
-(e.g. `fe_oa_...`, `dahl_...`). The repo is PRIVATE, but:
-- Never make this repo public without redacting those values first.
-- Prefer env-var references (like the existing `$NVIDIA_API_KEY`) over hardcoded keys.
+| المسار | الغرض |
+|---|---|
+| `pi/` | نسخة إعدادات Pi وتعليماته ومهاراته وامتداداته وملفات MCP |
+| `ecc/` | حزمة ECC الكاملة، بما فيها القواعد والأوامر والمهارات والاختبارات |
+| `pi/agent/nova/` | الطبقة الجديدة المتوافقة مع نموذج Nova متعدد الوكلاء |
+| `pi/agent/nova/agent-registry.json` | سجل الوكلاء والـ Plugins ومخططات الإدخال والإخراج |
+| `pi/agent/nova/events.json` | عقد الأحداث ودورة حياة المشروع |
+| `pi/agent/nova/workflow.json` | مخطط سير العمل العام والانتقالات عند الفشل |
+| `pi/agent/nova/workflows/` | تعريف مستقل لكل مرحلة بصيغة YAML |
+| `pi/agent/nova/plugins/` | ملفات كل وكيل: التعريف والتعليمات والأدوات والذاكرة والمخططات |
+| `pi/agent/nova/schemas/` | مخططات الذاكرة والأحداث والـ Artifacts وحالة سير العمل |
+| `pi/agent/nova/prompts/` | قوالب Prompts منظمة بعقود إخراج وحلقة تحقق |
+| `docs/` | وثائق المعمارية والهجرة وتدوير الأسرار |
+| `scripts/` | سكربتات توليد الطبقة والتحقق منها |
 
-## Restore
+## الوكلاء
+
+تضم النسخة الحالية خمسة عشر Plugin: المنسق، الاكتشاف، المتطلبات، البحث، المعمارية، UX/UI، الواجهة الأمامية، الخدمات الخلفية، قاعدة البيانات، الأمن، ضمان الجودة، DevOps، الدمج، التوثيق، والتحسين المستمر. لا يكفي إنشاء ملف تعليمات لإضافة وكيل؛ يجب أن يملك الوكيل `agent.json` و`instructions.md` و`tools.json` و`memory.json` و`schemas/` و`validators/`، ثم يُسجل في `agent-registry.json` ويُربط بالمرحلة المناسبة.
+
+## دورة العمل
+
+تبدأ الدورة بحدث `PROJECT_CREATED`، ثم تمر بالمراحل التالية: Discovery، Planning، Architecture، UX/UI، Development، Integration، Security Review، QA، Deployment، وContinuous Improvement. ينتج كل مسار مجموعة Artifacts، مثل المتطلبات والمعمارية ونظام التصميم ومكونات الواجهة ونتائج الاختبارات وخطة النشر وسجل النمو.
+
+تُستخدم الأحداث `TEST_FAILED` و`FIX_REQUIRED` لإعادة العمل إلى المسار المناسب بدل الاستمرار بنتيجة غير صالحة. ويظل المنسق مسؤولًا عن إدارة الحالة والتفويض والتجميع، بينما ينفذ الوكيل المتخصص عمله ضمن حدوده ولا يتحول إلى Orchestrator بديل.
+
+## التشغيل والتحقق
+
+من جذر المستودع، شغّل المدقق المحلي:
+
 ```bash
-# Pi config
-rsync -a --delete pi/ /root/.pi/
-# ECC bundle
-rsync -a --delete ecc/ /root/ecc-repo/
-# then reinstall deps where needed, e.g.:
-cd /root/.pi/penpot-mcp && npm install
+python3 scripts/validate_nova.py
 ```
-Use with care: review changes before overwriting live config.
 
-## Update workflow
+ولإعادة توليد ملفات طبقة Nova بعد تعديل القوالب:
+
 ```bash
-cd /root/pi-config-backup
-git add -A && git commit -m "chore: update pi config" && git push
+./scripts/build_nova_layer.py
 ```
+
+هذه الأوامر لا تتصل بخدمة خارجية ولا تنفذ نشرًا أو كتابة خارجية. وهي تتحقق من صحة JSON، وتكامل سجل الوكلاء، ووجود ملفات Plugins، وصحة الأحداث والمراحل، وتوافق النموذج الافتراضي مع `models.json`، وعدم وجود مفاتيح API حرفية في ملفات الإعداد الأساسية.
+
+## إعداد الأسرار
+
+لا تُحفظ مفاتيح API داخل المستودع. استخدم `.env.example` كقائمة بأسماء المتغيرات فقط، ثم عرّف القيم في بيئة التشغيل المحلية أو مدير أسرار مناسب. تستخدم ملفات النماذج مراجع مثل `$FREEMODEL_API_KEY` و`$DAHL_API_KEY` و`$NVIDIA_API_KEY` بدل القيم الحقيقية.
+
+وجود قيمة سرية في تاريخ Git لا يُصلح بمجرد حذفها من أحدث commit. يجب إلغاء المفاتيح التي سبق تخزينها أو مشاركتها، وإنشاء مفاتيح جديدة بأقل صلاحيات. راجع `docs/security-rotation.md` قبل أي استعادة أو نشر.
+
+## الاستعادة إلى Pi
+
+قبل الاستعادة، خذ نسخة من إعدادات Pi الحية، راجع التغييرات، وتأكد من تعريف `PI_HOME` و`ECC_HOME` في بيئتك. بعد ذلك يمكن نسخ محتوى `pi/` و`ecc/` إلى مسارات التشغيل الفعلية وفق طريقة تثبيت Pi لديك. لا تُشغّل استعادة عمياء باستخدام `--delete` قبل التأكد من أن النسخة الحالية كاملة ومناسبة للبيئة.
+
+## الحدود المعروفة
+
+طبقة Nova الحالية توفر العقود والهيكل والتنظيم، لكنها لا تحتوي بعد على Runtime إنتاجي للـ Event Bus أو مخزن Project Memory دائم أو واجهة SaaS أو نظام طوابير أو مراقبة مركزية. كما أن تكاملات GitHub وBrowser وFigma وقواعد البيانات والنشر معرفة في Tool Registry، لكن تفعيلها الفعلي يجب أن يتم عبر موصلات وسياسات اعتماد مستقلة.
+
+## الوثائق
+
+ابدأ من `docs/nova-architecture.md` لفهم المعمارية، ثم راجع `docs/nova-migration.md` لمعرفة ما تغير، و`docs/security-rotation.md` للإجراءات الأمنية. أما التفاصيل التنفيذية للوكلاء والأحداث والصلاحيات فتوجد داخل `pi/agent/nova/` باعتبارها مصادر الحقيقة القابلة للتحقق.
+
+## سياسة التغييرات
+
+استخدم Conventional Commits، وافصل التغييرات الأمنية عن التغييرات الوظيفية عندما يكون ذلك ممكنًا. لا تعدّل إعدادات Pi الحية مباشرة من دون نسخة احتياطية، ولا تضف خدمة خارجية أو صلاحية جديدة إلى Tool Layer من دون توثيق نطاق الوصول وسياسة الموافقة وخطة fallback.
+
+## الترخيص والملكية
+
+المستودع خاص، وتبقى مكونات Pi وECC خاضعة لتراخيصها الأصلية. قبل إعادة توزيع أي جزء أو جعله عامًا، راجع التراخيص والوثائق الأمنية واحذف أي إعدادات خاصة بالبيئة أو بيانات اعتماد أو سجلات جلسات.
+
+## فهرس سريع
+
+| السؤال | الملف المقترح |
+|---|---|
+| أين يوجد تعريف المنسق؟ | `pi/agent/nova/core/orchestrator.md` |
+| كيف تعمل الأحداث؟ | `pi/agent/nova/core/event-bus.md` و`events.json` |
+| كيف تُحفظ الذاكرة؟ | `pi/agent/nova/core/memory.md` والمخططات المقابلة |
+| كيف تُدار الصلاحيات؟ | `pi/agent/nova/permissions.json` و`core/security.md` |
+| كيف تُعرّف الأدوات؟ | `pi/agent/nova/tool-registry.json` و`core/tool-layer.md` |
+| كيف أتحقق من النسخة؟ | `scripts/validate_nova.py` |
+| ماذا أفعل مع الأسرار القديمة؟ | `docs/security-rotation.md` |
+
+**المؤلف:** Manus AI

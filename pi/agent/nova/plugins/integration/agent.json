@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "integration",
+  "name": "Integration Agent",
+  "version": "1.0.0",
+  "role": "دمج النتائج والتحقق من العقود بين الوكلاء",
+  "category": "integration",
+  "entrypoint": "instructions.md",
+  "tools": "tools.json",
+  "memory": "memory.json",
+  "inputSchema": "schemas/integration.input.schema.json",
+  "outputSchema": "schemas/integration.output.schema.json",
+  "permissionsRole": "development",
+  "events": {
+    "subscribe": [
+      "PROJECT_CREATED",
+      "REQUIREMENTS_READY",
+      "DESIGN_READY",
+      "CODE_READY",
+      "TEST_FAILED",
+      "FIX_REQUIRED",
+      "DEPLOY_READY",
+      "PROJECT_COMPLETED"
+    ],
+    "publish": []
+  }
+}

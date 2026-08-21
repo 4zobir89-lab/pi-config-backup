@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0.0",
+  "default": {
+    "allow": [],
+    "deny": [
+      "secrets.read",
+      "production.delete",
+      "external.write"
+    ]
+  },
+  "roles": {
+    "orchestrator": {
+      "allow": [
+        "artifact.read",
+        "artifact.write",
+        "event.publish",
+        "agent.invoke",
+        "audit.write"
+      ],
+      "requiresApproval": [
+        "external.write",
+        "deploy"
+      ]
+    },
+    "research": {
+      "allow": [
+        "artifact.read",
+        "artifact.write",
+        "web.read",
+        "browser.read"
+      ],
+      "requiresApproval": [
+        "browser.write"
+      ]
+    },
+    "development": {
+      "allow": [
+        "artifact.read",
+        "artifact.write",
+        "repo.read",
+        "repo.write",
+        "test.run"
+      ],
+      "requiresApproval": [
+        "commit",
+        "external.write"
+      ]
+    },
+    "security": {
+      "allow": [
+        "artifact.read",
+        "artifact.write",
+        "audit.read",
+        "secret-reference.validate"
+      ],
+      "requiresApproval": [
+        "secret.rotate"
+      ]
+    },
+    "deployment": {
+      "allow": [
+        "artifact.read",
+        "artifact.write",
+        "deploy.plan",
+        "deploy.status"
+      ],
+      "requiresApproval": [
+        "deploy",
+        "rollback"
+      ]
+    },
+    "improvement": {
+      "allow": [
+        "artifact.read",
+        "artifact.write",
+        "audit.read",
+        "metrics.read"
+      ],
+      "requiresApproval": [
+        "policy.change"
+      ]
+    }
+  }
+}

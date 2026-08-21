@@ -1008,7 +1008,7 @@ Do not include long scene-setting.
 ```markdown
 ## Hallmark - تصميم يبدو بشرياً وليس AI-generated
 
-**الموقع:** /root/.pi/agent/skills/hallmark/SKILL.md (مربوطة من /root/.agents/skills/hallmark/)
+**الموقع:** $PI_HOME/agent/skills/hallmark/SKILL.md (مربوطة من $AGENTS_HOME/skills/hallmark/)
 **الموقع الرسمي:** https://www.usehallmark.com · **المستودع:** github.com/Nutlope/hallmark
 **المصدر:** Together AI · **الترخيص:** MIT · **الإصدار:** 1.1.0
 
@@ -1074,7 +1074,7 @@ Do not include long scene-setting.
 ```markdown
 ## YouTube Automation Studio - طيار آلي لقناة يوتيوب بدون وجه
 
-**الموقع:** /root/.pi/agent/skills/youtube-automation-studio/SKILL.md
+**الموقع:** $PI_HOME/agent/skills/youtube-automation-studio/SKILL.md
 **المراجع:** references/ (channel-setup.md, topics.md, script.md, produce.md, grow.md)
 **محرك التوليد:** Higgsfield MCP (get_workflow_instructions, generate_video, explainer_video)
 

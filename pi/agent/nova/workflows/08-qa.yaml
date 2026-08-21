@@ -1,0 +1,22 @@
+version: 1
+id: nova-qa
+name: QA
+trigger:
+  event: DEPLOY_READY
+  idempotency_key: eventId
+execution:
+  mode: event-driven
+  approval_required: false
+agents:
+  - orchestrator
+  - qa
+outputs:
+  - qa-report.md
+  - test-results.json
+success_event: DEPLOY_READY
+failure_events:
+  - TEST_FAILED
+  - FIX_REQUIRED
+security:
+  audit_log: required
+  secret_access: reference-only

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "improvement",
+  "name": "Continuous Improvement Agent",
+  "version": "1.0.0",
+  "role": "قياس النتائج وتسجيل الدروس والتحسينات",
+  "category": "improvement",
+  "entrypoint": "instructions.md",
+  "tools": "tools.json",
+  "memory": "memory.json",
+  "inputSchema": "schemas/improvement.input.schema.json",
+  "outputSchema": "schemas/improvement.output.schema.json",
+  "permissionsRole": "improvement",
+  "events": {
+    "subscribe": [
+      "PROJECT_CREATED",
+      "REQUIREMENTS_READY",
+      "DESIGN_READY",
+      "CODE_READY",
+      "TEST_FAILED",
+      "FIX_REQUIRED",
+      "DEPLOY_READY",
+      "PROJECT_COMPLETED"
+    ],
+    "publish": []
+  }
+}

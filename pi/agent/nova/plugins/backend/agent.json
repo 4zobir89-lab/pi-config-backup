@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "backend",
+  "name": "Backend Agent",
+  "version": "1.0.0",
+  "role": "تنفيذ الخدمات وواجهات API",
+  "category": "development",
+  "entrypoint": "instructions.md",
+  "tools": "tools.json",
+  "memory": "memory.json",
+  "inputSchema": "schemas/backend.input.schema.json",
+  "outputSchema": "schemas/backend.output.schema.json",
+  "permissionsRole": "development",
+  "events": {
+    "subscribe": [
+      "PROJECT_CREATED",
+      "REQUIREMENTS_READY",
+      "DESIGN_READY",
+      "CODE_READY",
+      "TEST_FAILED",
+      "FIX_REQUIRED",
+      "DEPLOY_READY",
+      "PROJECT_COMPLETED"
+    ],
+    "publish": []
+  }
+}

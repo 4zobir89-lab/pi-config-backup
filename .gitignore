@@ -7,10 +7,19 @@ node_modules/
 .env
 .env.*
 *.env
+!.env.example
 auth.json
 sessions/
 models-store.json
 .backup-*
+
+# Pi runtime state and local credentials
+pi/agent/auth.json
+pi/agent/sessions/
+pi/agent/models-store.json
+pi/agent/.backup-*
+pi/agent/.env*
+pi/penpot-mcp/*.pid
 
 # OS / editor junk
 .DS_Store

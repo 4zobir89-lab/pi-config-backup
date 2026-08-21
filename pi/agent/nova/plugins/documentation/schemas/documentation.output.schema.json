@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nova/documentation.output.schema.json",
+  "type": "object",
+  "required": [
+    "status",
+    "agentId",
+    "projectId",
+    "artifacts",
+    "evidence",
+    "nextEvent"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "completed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "agentId": {
+      "const": "documentation"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextEvent": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "failureType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retryable": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

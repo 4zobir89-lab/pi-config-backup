@@ -3,7 +3,8 @@ import { execSync, spawn, exec } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const MCP_DIR = "/root/.pi/penpot-mcp";
+const PI_HOME = process.env.PI_HOME || process.env.HOME || "/tmp";
+const MCP_DIR = join(PI_HOME, "penpot-mcp");
 const PID_FILE = join(MCP_DIR, "mcp.pid");
 const LOG_DIR = join(MCP_DIR, "logs");
 const PORT = 4401;

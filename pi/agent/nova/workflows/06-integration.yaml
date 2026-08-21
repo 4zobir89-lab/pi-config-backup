@@ -1,0 +1,22 @@
+version: 1
+id: nova-integration
+name: Integration
+trigger:
+  event: CODE_READY
+  idempotency_key: eventId
+execution:
+  mode: event-driven
+  approval_required: false
+agents:
+  - orchestrator
+  - integration
+outputs:
+  - integration-report.md
+  - artifact-manifest.json
+success_event: DEPLOY_READY
+failure_events:
+  - TEST_FAILED
+  - FIX_REQUIRED
+security:
+  audit_log: required
+  secret_access: reference-only

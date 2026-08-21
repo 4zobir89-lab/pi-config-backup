@@ -1,10 +1,9 @@
 {
   "lastChangelogVersion": "0.84.2",
   "theme": "dark",
-  "defaultProvider": "opencode",
-  "defaultModel": "hy3-free",
+  "defaultProvider": "freemodel",
+  "defaultModel": "gpt-5.4-mini",
   "providerPriority": [
-    "opencode",
     "freemodel",
     "dahl",
     "nvidia",
@@ -126,27 +125,9 @@
   },
   "modelRouting": {
     "enabled": true,
-    "defaultProvider": "nvidia",
-    "fallbackProvider": "cloudflare-workers-ai",
+    "defaultProvider": "freemodel",
+    "fallbackProvider": "freemodel",
     "verifiedModels": [
-      {
-        "id": "big-pickle",
-        "provider": "opencode",
-        "status": "verified",
-        "contextWindow": 200000,
-        "maxTokens": 16384,
-        "reasoning": true,
-        "vision": true,
-        "cost": "paid",
-        "tasks": [
-          "coding",
-          "testing",
-          "review",
-          "debugging",
-          "architecture",
-          "complex-bug"
-        ]
-      },
       {
         "id": "gpt-5.6-sol",
         "provider": "freemodel",
@@ -294,9 +275,9 @@
   },
   "aow": {
     "enabled": true,
-    "advisorModel": "claude-fable-5",
-    "workerModel": "gemini-3.5-flash",
-    "orchestratorModel": "sonnet",
+    "advisorModel": "gpt-5.6-sol",
+    "workerModel": "gpt-5.4-mini",
+    "orchestratorModel": "gpt-5.6-sol",
     "maxWorkersPerWave": 3,
     "minAdvisorConsults": 2,
     "retryOnFailure": 1,
@@ -377,9 +358,21 @@
   "instructions": {
     "loadOnStart": true,
     "files": [
-      "/root/.pi/agent/AGENTS.md",
-      "/root/.pi/agent/ECC-ENFORCEMENT.md"
+      "$PI_HOME/agent/AGENTS.md",
+      "$PI_HOME/agent/ECC-ENFORCEMENT.md"
     ]
   },
-  "defaultThinkingLevel": "high"
+  "defaultThinkingLevel": "high",
+  "nova": {
+    "enabled": true,
+    "version": "1.0.0",
+    "registry": "nova/agent-registry.json",
+    "events": "nova/events.json",
+    "workflow": "nova/workflow.json",
+    "artifactCatalog": "nova/artifact-catalog.json",
+    "permissions": "nova/permissions.json",
+    "defaultDeny": true,
+    "requireArtifactBeforeTransition": true,
+    "requireApprovalForExternalWrites": true
+  }
 }

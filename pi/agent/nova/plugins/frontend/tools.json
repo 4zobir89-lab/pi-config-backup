@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "defaultPolicy": "deny",
+  "allowed": [
+    "artifact.read",
+    "artifact.write",
+    "memory.read",
+    "memory.write",
+    "audit.write"
+  ],
+  "requiresApproval": [
+    "external.write",
+    "deploy",
+    "commit",
+    "secret.rotate"
+  ]
+}

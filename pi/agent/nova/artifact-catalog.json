@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "1.0.0",
+  "rules": {
+    "everyStageMustProduceArtifact": true,
+    "immutableAfterApproval": true,
+    "contentAddressed": true,
+    "ownerRequired": true,
+    "sourceAndDecisionTraceRequired": true
+  },
+  "artifacts": [
+    {
+      "name": "adr.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "api.yaml",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "architecture.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "artifact-manifest.json",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "components.tsx",
+      "kind": "source",
+      "required": true
+    },
+    {
+      "name": "database.sql",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "deployment.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "design-system.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "growth-log.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "integration-report.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "project-brief.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "qa-report.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "requirements.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "research.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "runbook.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "security-review.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "services.ts",
+      "kind": "source",
+      "required": true
+    },
+    {
+      "name": "test-results.json",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "tests.md",
+      "kind": "document",
+      "required": true
+    },
+    {
+      "name": "ux-flows.md",
+      "kind": "document",
+      "required": true
+    }
+  ]
+}
