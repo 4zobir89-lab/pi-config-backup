@@ -26,6 +26,7 @@ mkdir -p "$BACKUP_DIR"
 # Only these paths are owned by the repository's safe synchronization boundary.
 SAFE_PATHS=(
   "AGENTS.md"
+  "REPOSITORY-OPERATING-INSTRUCTIONS.md"
   "ECC-ENFORCEMENT.md"
   "ECC-INSTALLATION-REPORT.md"
   "ECC-QUICK-REFERENCE.md"
@@ -69,6 +70,7 @@ BACKUP_DIR=$(printf '%q' "$BACKUP_DIR")
 TARGET=$(printf '%q' "$TARGET")
 for path in "
   AGENTS.md
+  REPOSITORY-OPERATING-INSTRUCTIONS.md
   ECC-ENFORCEMENT.md
   ECC-INSTALLATION-REPORT.md
   ECC-QUICK-REFERENCE.md
